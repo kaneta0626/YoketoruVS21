@@ -87,7 +87,7 @@ namespace YoketoruVS21
 
                 case State.Clear:
                     //MessageBox.Show("Clear");
-                    gameoverLabel.Visible = true;
+                    clearLabel.Visible = true;
                     titleButton.Visible = true;
                     break;
 
