@@ -29,6 +29,7 @@ namespace YoketoruVS21
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.startButton = new System.Windows.Forms.Button();
             this.titleLabel = new System.Windows.Forms.Label();
             this.copyrightLabel = new System.Windows.Forms.Label();
@@ -38,6 +39,7 @@ namespace YoketoruVS21
             this.gameoverLabel = new System.Windows.Forms.Label();
             this.clearLabel = new System.Windows.Forms.Label();
             this.titleButton = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // startButton
@@ -50,6 +52,7 @@ namespace YoketoruVS21
             this.startButton.TabIndex = 0;
             this.startButton.Text = "start";
             this.startButton.UseVisualStyleBackColor = false;
+            this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
             // titleLabel
             // 
@@ -104,20 +107,20 @@ namespace YoketoruVS21
             // gameoverLabel
             // 
             this.gameoverLabel.AutoSize = true;
-            this.gameoverLabel.Font = new System.Drawing.Font("Snap ITC", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.gameoverLabel.Location = new System.Drawing.Point(197, 74);
+            this.gameoverLabel.Font = new System.Drawing.Font("Snap ITC", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.gameoverLabel.Location = new System.Drawing.Point(57, 74);
             this.gameoverLabel.Name = "gameoverLabel";
-            this.gameoverLabel.Size = new System.Drawing.Size(171, 35);
+            this.gameoverLabel.Size = new System.Drawing.Size(402, 82);
             this.gameoverLabel.TabIndex = 6;
             this.gameoverLabel.Text = "GameOver";
             // 
             // clearLabel
             // 
             this.clearLabel.AutoSize = true;
-            this.clearLabel.Font = new System.Drawing.Font("Snap ITC", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.clearLabel.Font = new System.Drawing.Font("Snap ITC", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.clearLabel.Location = new System.Drawing.Point(493, 74);
             this.clearLabel.Name = "clearLabel";
-            this.clearLabel.Size = new System.Drawing.Size(96, 35);
+            this.clearLabel.Size = new System.Drawing.Size(228, 82);
             this.clearLabel.TabIndex = 7;
             this.clearLabel.Text = "Clear";
             // 
@@ -131,6 +134,11 @@ namespace YoketoruVS21
             this.titleButton.TabIndex = 8;
             this.titleButton.Text = "タイトルへ";
             this.titleButton.UseVisualStyleBackColor = false;
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -165,6 +173,7 @@ namespace YoketoruVS21
         private System.Windows.Forms.Label gameoverLabel;
         private System.Windows.Forms.Label clearLabel;
         private System.Windows.Forms.Button titleButton;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
