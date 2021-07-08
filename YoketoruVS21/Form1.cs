@@ -34,9 +34,9 @@ namespace YoketoruVS21
         const int ItemIndex = EnemyIndex + EnemyMax;
 
 
-        const string PlayerText = "(^ω^)";
-        const string EnemyText = "●";
-        const string ItemText = "★";
+        const string PlayerText = "(/・ω・)/";
+        const string EnemyText = "(;´Д｀)";
+        const string ItemText = "💛";
 
         static Random rand = new Random();
 
@@ -186,20 +186,31 @@ namespace YoketoruVS21
                     vy[i] = -Math.Abs(vy[i]);
                 }
 
-                if( (mp.X>=chrs[i].Left)
-                    && (mp.X<=chrs[i].Right)
-                    && (mp.Y>=chrs[i].Top)
-                    && (mp.Y<chrs[i].Bottom)
+                if(         (mp.X >= chrs[i].Left)
+                      &&    (mp.X < chrs[i].Right)
+                      &&    (mp.Y >= chrs[i].Top)
+                      &&    (mp.Y < chrs[i].Bottom)
                     )
+                
+                    //当たり判定
+                    if ((mp.X >= chrs[i].Left)
+                        && (mp.X < chrs[i].Right)
+                        && (mp.Y >= chrs[i].Top)
+                        && (mp.Y < chrs[i].Bottom)
+                        ) 
+                
+
+                if(i<ItemIndex)
                 {
-                    MessageBox.Show("当たった");
+                    nextState = State.Gameover;
+                }
+                else
+                {
+                    chrs[i].Visible = false;
                 }
 
             }
 
-            //Point spos = MousePosition;
-            //fpos = PointToClient(spos);
-            //PlayerText. = $"{spos.X},{fpos.Y};"
         }
 
         private void startButton_Click(object sender, EventArgs e)
