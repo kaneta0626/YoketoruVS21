@@ -91,9 +91,9 @@ namespace YoketoruVS21
             this.leftLabel.Font = new System.Drawing.Font("Snap ITC", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.leftLabel.Location = new System.Drawing.Point(698, 9);
             this.leftLabel.Name = "leftLabel";
-            this.leftLabel.Size = new System.Drawing.Size(81, 35);
+            this.leftLabel.Size = new System.Drawing.Size(94, 35);
             this.leftLabel.TabIndex = 4;
-            this.leftLabel.Text = "★:10";
+            this.leftLabel.Text = "💛:10";
             // 
             // hiLabel
             // 

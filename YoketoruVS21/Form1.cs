@@ -18,6 +18,11 @@ namespace YoketoruVS21
 
         const int SpeedMax = 20;
 
+        const int StartTime = 100;
+
+        int ItemCount;
+        int time;
+
         const int PlayerMax = 1;
         const int EnemyMax = 3;
         const int ItemMax = 3;
@@ -32,7 +37,7 @@ namespace YoketoruVS21
         const int PlayerIndex = 0;
         const int EnemyIndex = PlayerMax;
         const int ItemIndex = EnemyIndex + EnemyMax;
-
+    
 
         const string PlayerText = "(/・ω・)/";
         const string EnemyText = "(;´Д｀)";
@@ -133,11 +138,15 @@ namespace YoketoruVS21
 
                     for (int i=EnemyIndex; i<ChrMax; i++)
                     {
+                  
                         chrs[i].Left = rand.Next(ClientSize.Width - chrs[i].Width);
                         chrs[i].Top = rand.Next(ClientSize.Height - chrs[i].Height);
                         vx[i] = rand.Next(-SpeedMax, SpeedMax + 1);
                         vy[i] = rand.Next(-SpeedMax, SpeedMax + 1);
                     }
+                    ItemCount = ItemMax;
+                    time = StartTime + 1;
+
                     break;
 
                 case State.Gameover:
@@ -157,6 +166,9 @@ namespace YoketoruVS21
 
         void UpdateGame()
         {
+            time--;
+            timeLabel.Text = "Time" + time;
+
             Point mp = PointToClient(MousePosition);
 
             chrs[PlayerIndex].Left = mp.X - chrs[PlayerIndex].Width / 2;
@@ -164,6 +176,7 @@ namespace YoketoruVS21
 
             for (int i=EnemyIndex;i < ChrMax; i++)
             {
+                if (!chrs[i].Visible) continue;
 
                 //TODO: mpがプレイヤーラベルの中心になるように設定
                 chrs[i].Left += vx[i];
@@ -186,28 +199,40 @@ namespace YoketoruVS21
                     vy[i] = -Math.Abs(vy[i]);
                 }
 
-                if(         (mp.X >= chrs[i].Left)
-                      &&    (mp.X < chrs[i].Right)
-                      &&    (mp.Y >= chrs[i].Top)
-                      &&    (mp.Y < chrs[i].Bottom)
+                if ((mp.X >= chrs[i].Left)
+                      && (mp.X < chrs[i].Right)
+                      && (mp.Y >= chrs[i].Top)
+                      && (mp.Y < chrs[i].Bottom)
                     )
-                
+
                     //当たり判定
                     if ((mp.X >= chrs[i].Left)
                         && (mp.X < chrs[i].Right)
                         && (mp.Y >= chrs[i].Top)
                         && (mp.Y < chrs[i].Bottom)
-                        ) 
-                
+                        )
 
-                if(i<ItemIndex)
-                {
-                    nextState = State.Gameover;
-                }
-                else
-                {
-                    chrs[i].Visible = false;
-                }
+                    {
+                        //MessageBox.Show("重なった");
+
+                        if (i < ItemIndex)    
+                        {
+                            nextState = State.Gameover;
+                        }
+                        else
+                        {
+                            //アイテム
+                            chrs[i].Visible = false;
+                            ItemCount--;
+                            leftLabel.Text = "💛:" + ItemCount;
+
+                            //案1
+                            //vx[i] = 0;
+                            //vy[i] = 0;
+                            //chrs[i].Left = 10000;
+                        }
+
+                    }
 
             }
 
