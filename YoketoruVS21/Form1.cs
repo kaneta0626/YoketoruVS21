@@ -167,7 +167,12 @@ namespace YoketoruVS21
         void UpdateGame()
         {
             time--;
-            timeLabel.Text = "Time" + time;
+            timeLabel.Text = $"Time{time}";
+            
+            if(time<=0)
+            {
+                nextState = State.Gameover;
+            }
 
             Point mp = PointToClient(MousePosition);
 
