@@ -21,7 +21,8 @@ namespace YoketoruVS21
         const int StartTime = 100;
 
         int ItemCount;
-        int time;
+        int time=0;
+        int hiscore = 0;
 
         const int PlayerMax = 1;
         const int EnemyMax = 3;
@@ -159,6 +160,14 @@ namespace YoketoruVS21
                     //MessageBox.Show("Clear");
                     clearLabel.Visible = true;
                     titleButton.Visible = true;
+                    hiLabel.Visible = true;
+
+                    if(time > hiscore)
+                    {
+                        hiscore = time;
+                        hiLabel.Text = "HighScore" + hiscore;
+                    }
+
                     break;
 
             }
@@ -169,7 +178,7 @@ namespace YoketoruVS21
             time--;
             timeLabel.Text = $"Time{time}";
             
-            if(time<=0)
+            if(time <= 0)
             {
                 nextState = State.Gameover;
             }

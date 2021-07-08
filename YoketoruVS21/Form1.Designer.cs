@@ -119,7 +119,7 @@ namespace YoketoruVS21
             // 
             this.clearLabel.AutoSize = true;
             this.clearLabel.Font = new System.Drawing.Font("Snap ITC", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.clearLabel.Location = new System.Drawing.Point(278, 93);
+            this.clearLabel.Location = new System.Drawing.Point(294, 9);
             this.clearLabel.Name = "clearLabel";
             this.clearLabel.Size = new System.Drawing.Size(228, 82);
             this.clearLabel.TabIndex = 7;
