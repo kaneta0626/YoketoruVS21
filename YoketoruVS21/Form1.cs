@@ -20,13 +20,9 @@ namespace YoketoruVS21
 
         const int StartTime = 100;
 
-        int ItemCount;
-        int time=0;
-        int hiscore = 0;
-
         const int PlayerMax = 1;
-        const int EnemyMax = 3;
-        const int ItemMax = 3;
+        const int EnemyMax = 10;
+        const int ItemMax = 10;
         const int ChrMax = PlayerMax + EnemyMax + ItemMax;
 
 
@@ -61,11 +57,15 @@ namespace YoketoruVS21
 
         public static extern short GetAsyncKeyState(int vKey);
 
+        int ItemCount;
+        int time = 0;
+        int hiscore = 0;
+
         public Form1()
         {
             InitializeComponent();
 
-            for (int i=0; i<ChrMax; i++)
+            for (int i = 0; i < ChrMax; i++)
             {
                 chrs[i] = new Label();
                 chrs[i].AutoSize = true;
@@ -137,7 +137,7 @@ namespace YoketoruVS21
                     copyrightLabel.Visible = false;
                     hiLabel.Visible = false;
 
-                    for (int i=EnemyIndex; i<ChrMax; i++)
+                    for (int i  =EnemyIndex; i < ChrMax; i++)
                     {
                   
                         chrs[i].Left = rand.Next(ClientSize.Width - chrs[i].Width);
@@ -238,7 +238,11 @@ namespace YoketoruVS21
                             //アイテム
                             chrs[i].Visible = false;
                             ItemCount--;
-                            leftLabel.Text = "💛:" + ItemCount;
+                            leftLabel.Text = $"💛:{ItemCount}";
+                            if(ItemCount <= 0)
+                            {
+                                nextState = State.Clear;
+                            }
 
                             //案1
                             //vx[i] = 0;
