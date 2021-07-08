@@ -16,16 +16,23 @@ namespace YoketoruVS21
     {   
         const bool isDebug = true;
 
+        const int SpeedMax = 20;
+
         const int PlayerMax = 1;
         const int EnemyMax = 3;
         const int ItemMax = 3;
         const int ChrMax = PlayerMax + EnemyMax + ItemMax;
 
+
         Label[] chrs = new Label[ChrMax];
+        int[] vx = new int[ChrMax];
+        int[] vy = new int[ChrMax];
+
 
         const int PlayerIndex = 0;
         const int EnemyIndex = PlayerMax;
         const int ItemIndex = EnemyIndex + EnemyMax;
+
 
         const string PlayerText = "(^ω^)";
         const string EnemyText = "●";
@@ -128,6 +135,8 @@ namespace YoketoruVS21
                     {
                         chrs[i].Left = rand.Next(ClientSize.Width - chrs[i].Width);
                         chrs[i].Top = rand.Next(ClientSize.Height - chrs[i].Height);
+                        vx[i] = rand.Next(-SpeedMax, SpeedMax + 1);
+                        vy[i] = rand.Next(-SpeedMax, SpeedMax + 1);
                     }
                     break;
 
@@ -150,7 +159,45 @@ namespace YoketoruVS21
         {
             Point mp = PointToClient(MousePosition);
 
+            for(int i=EnemyIndex;i < ChrMax; i++)
+            {
+
+                chrs[i].Left += vx[i];
+                chrs[i].Left += vy[i];
+
+                if (chrs[i].Left < 0)
+                {
+                    vx[i] = Math.Abs(vx[i]);
+                }
+                if (chrs[i].Right > ClientSize.Width)
+                {
+                    vx[i] = -Math.Abs(vx[i]);
+                }
+                if (chrs[i].Top < 0)
+                {
+                    vy[i] = Math.Abs(vy[i]);
+                }
+                if (chrs[i].Bottom > ClientSize.Height)
+                {
+                    vy[i] = -Math.Abs(vy[i]);
+                }
+
+                if( (mp.X>=chrs[i].Left)
+                    && (mp.X<=chrs[i].Right)
+                    && (mp.Y>=chrs[i].Top)
+                    && (mp.Y<chrs[i].Bottom)
+                    )
+                {
+                    MessageBox.Show("当たった");
+                }
+
+            }
+
             //TODO: mpがプレイヤーラベルの中心になるように設定
+
+            //Point spos = MousePosition;
+            //fpos = PointToClient(spos);
+            //PlayerText. = $"{spos.X},{fpos.Y};"
         }
 
         private void startButton_Click(object sender, EventArgs e)
