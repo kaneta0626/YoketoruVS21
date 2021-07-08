@@ -159,9 +159,13 @@ namespace YoketoruVS21
         {
             Point mp = PointToClient(MousePosition);
 
-            for(int i=EnemyIndex;i < ChrMax; i++)
+            chrs[PlayerIndex].Left = mp.X - chrs[PlayerIndex].Width / 2;
+            chrs[PlayerIndex].Top = mp.Y - chrs[PlayerIndex].Height / 2;
+
+            for (int i=EnemyIndex;i < ChrMax; i++)
             {
 
+                //TODO: mpがプレイヤーラベルの中心になるように設定
                 chrs[i].Left += vx[i];
                 chrs[i].Left += vy[i];
 
@@ -192,8 +196,6 @@ namespace YoketoruVS21
                 }
 
             }
-
-            //TODO: mpがプレイヤーラベルの中心になるように設定
 
             //Point spos = MousePosition;
             //fpos = PointToClient(spos);
